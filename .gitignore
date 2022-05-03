@@ -162,4 +162,3 @@ cython_debug/
 # SQLite database file
 *.sqlite
 *.sqlite3
-db.sqlite3

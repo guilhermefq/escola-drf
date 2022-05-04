@@ -10,6 +10,12 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         model = Avaliacao
         fields = ('__all__')
 
+    # Seguir o padrão: validate_nomedocampo
+    def validate_avaliacao(self, valor):
+        if valor in range(1, 6):
+            return valor
+        return serializers.ValidationError('A avaliação deve estar entre 1 e 5')
+
 
 class CursoSerializer(serializers.ModelSerializer):
     # Nested Relationship

@@ -58,7 +58,7 @@ API V2
 class CursoViewSet(viewsets.ModelViewSet):
     # Indica que esta viewset "olhe" somente para as permissões do DjangoModelPermissions
     # gerenciados pelo Django Admin
-    permission_classes = (EhSuperUser, permissions.DjangoModelPermissions, )
+    # permission_classes = (EhSuperUser, permissions.DjangoModelPermissions, )
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 

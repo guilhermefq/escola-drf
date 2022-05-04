@@ -4,11 +4,13 @@ from rest_framework import generics
 from rest_framework.generics import get_object_or_404
 from .models import Curso, Avaliacao
 from .serializers import CursoSerializer, AvaliacaoSerializer
+from .permissions import EhSuperUser
 
 from rest_framework import viewsets
 # para adicionar um método customizado, alterando ações padrão do Django Rest Framework
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import permissions
 
 """
 API V1
@@ -54,6 +56,9 @@ API V2
 
 
 class CursoViewSet(viewsets.ModelViewSet):
+    # Indica que esta viewset "olhe" somente para as permissões do DjangoModelPermissions
+    # gerenciados pelo Django Admin
+    permission_classes = (EhSuperUser, permissions.DjangoModelPermissions, )
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 

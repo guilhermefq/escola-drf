@@ -19,6 +19,7 @@ class Curso(Base):
     class Meta:
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
+        ordering = ['id']
 
     def __str__(self):
         return str(self.titulo)
@@ -37,6 +38,7 @@ class Avaliacao(Base):
         verbose_name_plural = 'Avaliações'
         # cada pessoa pode avaliar um curso apenas uma vez
         unique_together = ['email', 'curso']
+        ordering = ['id']
 
     def __str__(self):
         return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'

@@ -7,12 +7,12 @@ HEADERS = {'Authorization': 'Token 236131ba6d799a790e8dcd88c098437b681217ff'}
 URL_BASE = 'http://localhost:8000/api/v2/'
 
 CURSO_BODY = {
-    "titulo": "Python para Zumbis",
-    "url": f"http://www.pythonzombies{str(random())}.com.br",
+    "titulo": "Python Avançado",
+    "url": f"http://www.pythonavancado{str(random())}.com.br",
 }
 
 CURSO_BODY_PUT = {
-    "titulo": "Python para Zumbis PUT",
+    "titulo": "Python Avançado",
     "url": CURSO_BODY["url"],
 }
 
@@ -30,7 +30,6 @@ res_curso = requests.post(url=URL_BASE + 'cursos/',
 res_avaliacoes = requests.post(
     url=URL_BASE + 'avaliacoes/', headers=HEADERS, data=AVALIACAO_BODY)
 
-
 # Testando o código de status HTTP 201 - Cursos
 assert res_curso.status_code == 201
 
@@ -44,7 +43,6 @@ assert jsonpath(res_curso_get.json(), 'id')[0] == res_curso_id
 # Testando a atualização do curso com ID res_curso_id
 res_put_curso = requests.put(
     url=URL_BASE + f'cursos/{res_curso_id}/', headers=HEADERS, data=CURSO_BODY_PUT)
-
 assert res_put_curso.status_code == 200
 
 # Testando o valor do campo titulo do curso atualizado

@@ -18,10 +18,10 @@ if avaliacoes.status_code == 200:
             print('Erro: ', next_page.status_code)
             break
 
-    # avaliacoes_next = requests.get(avaliacoes.json()['next'])
-    # # print(avaliacoes_next.json())
+    avaliacoes_next = requests.get(avaliacoes.json()['next'])
+    # print(avaliacoes_next.json())
 
-    # results = avaliacoes_next.json()['results']
+    results = avaliacoes_next.json()['results']
 
-    # for result in results:
-    #     print(result['id'], result['nome'])
+    for result in results:
+        print(result['id'], result['nome'])

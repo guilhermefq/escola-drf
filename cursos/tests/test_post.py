@@ -5,7 +5,7 @@ from faker import Faker
 
 fake = Faker()
 
-HEADERS = {'Authorization': 'Token 236131ba6d799a790e8dcd88c098437b681217ff'}
+HEADERS = {'Authorization': 'Token ...'}
 
 URL_BASE = 'http://localhost:8000/api/v2/'
 

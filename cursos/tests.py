@@ -9,7 +9,7 @@ from .models import Curso
 
 class CursosTest(APITestCase):
     url_base = 'http://localhost:8000/api/v2/'
-    headers = {'Authorization': 'Token 236131ba6d799a790e8dcd88c098437b681217ff'}
+    headers = {'Authorization': 'Token ...'}
     curso_id = 0
     faker = Faker()
 

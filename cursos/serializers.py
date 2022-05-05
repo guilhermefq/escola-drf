@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.db.models import Avg
 from .models import Curso, Avaliacao
 
 
@@ -12,7 +13,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 
     # Seguir o padrão: validate_nomedocampo
     def validate_avaliacao(self, valor):
-        if valor in range(1, 6):
+        if valor in range(0, 6):
             return valor
         return serializers.ValidationError('A avaliação deve estar entre 1 e 5')
 
@@ -28,6 +29,21 @@ class CursoSerializer(serializers.ModelSerializer):
     # Primary Key Related Field
     avaliacoes = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
+    # Criando o campo media_avaliacoes
+    # SerializerMethodField indica que o campo é alimentado por uma função
+    media_avaliacoes = serializers.SerializerMethodField()
+
+    # Criando a função para calculo da média, para alimentar o campo media_avaliacoes
+    # Deve-se manter o padrão get_nomedocampo
+    def get_media_avaliacoes(self, obj):
+        media = obj.avaliacoes.aggregate(
+            Avg('avaliacao')).get('avaliacao__avg')
+
+        if media is None:
+            return 0
+        return round(media * 2) / 2
+
     class Meta:
         model = Curso
-        fields = ('__all__')
+        fields = ('id', 'titulo', 'url', 'criacao',
+                  'ativo', 'avaliacoes', 'media_avaliacoes')
